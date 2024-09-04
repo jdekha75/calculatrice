@@ -5,10 +5,9 @@
  */
 package ma.dekha.calculatrice.controleur;
 
-import ma.dekha.calculatrice.traitement.AdditionSoustraction;
-import ma.dekha.calculatrice.traitement.MultiplicationDivision;
-import ma.dekha.calculatrice.traitement.Parenthese;
-import ma.dekha.calculatrice.traitement.Puissance;
+import ma.dekha.calculatrice.traitement.*;
+
+import java.text.DecimalFormat;
 
 /**
  *
@@ -20,6 +19,7 @@ public class ControleurCalcul {
     private static int p2 = 0;
     private double resultat = 0;
 
+
     public ControleurCalcul() {
     }
 
@@ -27,6 +27,8 @@ public class ControleurCalcul {
         str = insereCaret(str);
         str = Puissance.traitePuissance(str);
         str = Parenthese.retireParenthese(str);
+        str = Fonction.traite(str);
+
         str = traite(str) + "";
         return str;
     }
@@ -39,7 +41,7 @@ public class ControleurCalcul {
         str = str.replace("-+", "-");
         str = str.replace("+-", "-");
         System.out.println("avant calcul fin");
-        str = String.format("%f", AdditionSoustraction.additionnerSoustraire(str));
+        str = String.format("%.9f", AdditionSoustraction.additionnerSoustraire(str));
 
         return Double.valueOf(str);
     }
@@ -65,7 +67,7 @@ public class ControleurCalcul {
 
         while (position < taille) {
 
-            while (position < taille && !ControleurAffiche.isSupScript(str.charAt(position) + "")) {
+            while (position < taille && !ControleurAffiche.isSuperScript(str.charAt(position) + "")) {
                 //while (position < taille && !Character.isDigit(str.charAt(position))) {
                 strBuild.append(str.charAt(position));
                 position++;
@@ -80,7 +82,7 @@ public class ControleurCalcul {
 
             String s = null;
 
-            while (position < taille && ControleurAffiche.isSupScript(str.charAt(position) + "")) {
+            while (position < taille && ControleurAffiche.isSuperScript(str.charAt(position) + "")) {
                 //while (position < taille && Character.isDigit(str.charAt(position))) {
                 char c = str.charAt(position);
                 //str = str.substring(taille, taille)
@@ -100,4 +102,7 @@ public class ControleurCalcul {
         return strBuild.toString();
     }
 
+    public static String factorise(String text) {
+        return Factorisation.factorise(text);
+    }
 }

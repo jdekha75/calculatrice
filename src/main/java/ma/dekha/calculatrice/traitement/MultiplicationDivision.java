@@ -32,7 +32,7 @@ public class MultiplicationDivision {
             }
 
             int positionMin = Math.min(i1, i2);
-            s = String.format("%f", traiter(str, positionMin));
+            s = String.format("%.9f", traiter(str, positionMin));
 
             str = str.substring(0, p1) + s + str.substring(p2, str.length());
 

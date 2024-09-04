@@ -21,7 +21,8 @@ public class Fonction {
         double res = 0d;
         int p1;
         int p2;
-
+        str = str.replace("√","sqrt");
+        
         String regExp = "(\\p{Alpha}{2,}) *\\(? *(-?\\d+(\\.\\d+)?(E\\d+)?) *\\)?";
         Pattern pattern = Pattern.compile(regExp);
         Matcher matcher = pattern.matcher(str);
@@ -45,9 +46,11 @@ public class Fonction {
             switch (nomFonction) {
                 case "cos", "sin", "tan" ->  {
                     double d = Double.valueOf(param);
+                    System.out.print(d + " degres = ");
 //                    d = d * Math.PI / 180;
                     d = Math.toRadians(d);
                     param = d + "";
+                    System.out.println(d + " en radian");
                 }
 
                 case "ln" -> nomFonction = "log";
@@ -75,10 +78,13 @@ public class Fonction {
             */
 
             String s = sousTraite(nomFonction, param);
+            System.out.println(s);
             str = str.substring(0, p1) + s + str.substring(p2, str.length());
+            System.out.println(str);
             matcher = pattern.matcher(str);
 
         }
+        System.out.println(str);
         return str;
     }
 
@@ -90,7 +96,7 @@ public class Fonction {
         try {
             Method methode = classe.getMethod(nomFonction, double.class);
             try {
-                str = (Double) methode.invoke(null, paramDouble) + "";
+                str = String.format("%.7f", (Double) methode.invoke(null, paramDouble));
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 ex.printStackTrace();
             }

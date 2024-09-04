@@ -19,7 +19,7 @@ public class Puissance {
         while (!str.isBlank() && !str.isEmpty() && (str.contains("^"))) {
             int position = str.indexOf("^");
 
-            String s = String.format("%f", pow(str, position));
+            String s = String.format("%.7f", pow(str, position));
 
             str = str.substring(0, p1) + s + str.substring(p2, str.length());
 

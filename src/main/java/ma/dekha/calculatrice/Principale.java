@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -36,11 +37,14 @@ public class Principale {
             fenetre = new Fenetre();
             fenetre.setLocation((int) (dimensionDelEcran.getWidth() / 4), (int) (dimensionDelEcran.getHeight() / 4));
 
-            fenetre.setTitle("Calculatrice");
+           // fenetre.setTitle("Calculatrice");
             fenetre.setMinimumSize(new Dimension(700, 450));
             fenetre.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            Image img = new ImageIcon("/home/linux/blue.gif").getImage();
-            fenetre.setIconImage(img);
+            URL url = Principale.class.getClassLoader().getResource("cal-24.png");
+            Image image = Toolkit.getDefaultToolkit().getImage(url);
+           // ImageIcon imageIcon = new ImageIcon(url);
+            //Image img = imageIcon.getImage();
+            fenetre.setIconImage(image);
             fenetre.setLocationByPlatform(true);
             fenetre.setVisible(true);
             fenetre.pack();

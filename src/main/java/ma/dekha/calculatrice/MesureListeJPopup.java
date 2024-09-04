@@ -17,7 +17,6 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 /**
- *
  * @author linux
  */
 public class MesureListeJPopup {
@@ -106,7 +105,6 @@ public class MesureListeJPopup {
             //System.out.println((int) (jmenu.getLocation().getX()) + " " + (int) (jmenu.getLocation().getY()));//.setBackground(Color.red);
         }
         ajouterListener();
-
     }
 
     private static void remplirJPopupFrom() {
@@ -114,9 +112,7 @@ public class MesureListeJPopup {
         for (JMenu jmenu : tableauJMenu) {
 
             jpopupFrom.add(jmenu);
-
         }
-
     }
 
     private void ajouterJMenuItem() {
@@ -155,7 +151,6 @@ public class MesureListeJPopup {
                 }
             });
         }
-
     }
 
     private void ajouterListener() {
@@ -165,18 +160,17 @@ public class MesureListeJPopup {
             for (JMenuItem jm : tableauJMenuItemses[i]) {
 
                 jm.addActionListener(e -> {
-                    JMenuItem j = ((JMenuItem) (e.getSource()));
-                    //index = i;
-                    //System.out.println("com.m "+ jpopupFrom.getInvoker());
-                    Component c = jpopupFrom.getInvoker();
-                    JButton fromMesure = (JButton) c;
-                    fromMesure.setText(jm.getText());
-                    //System.out.println("com.m "+ fromMesure);
-                }
+                            JMenuItem j = ((JMenuItem) (e.getSource()));
+                            //index = i;
+                            //System.out.println("com.m "+ jpopupFrom.getInvoker());
+                            Component c = jpopupFrom.getInvoker();
+                            JButton fromMesure = (JButton) c;
+                            fromMesure.setText(jm.getText());
+                            //System.out.println("com.m "+ fromMesure);
+                        }
                 );
             }
         }
-
     }
 
     public static void showup(Component c) {

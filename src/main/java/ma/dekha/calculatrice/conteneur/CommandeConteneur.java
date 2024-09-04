@@ -13,19 +13,19 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import ma.dekha.calculatrice.controleur.ControleurAffiche;
 import ma.dekha.calculatrice.ecouteur.ClavierActionListener;
 
 /**
- *
  * @author linux
  */
 public class CommandeConteneur extends JPanel {
 
-    GridBagConstraints c;
     static int x = 0;
     static int y = 0;
     static boolean commande = true;
+    GridBagConstraints c;
 
     public CommandeConteneur() {
 
@@ -45,7 +45,7 @@ public class CommandeConteneur extends JPanel {
         x++;
 
         //-------------------------------
-        //----- colonne 2-----------------        
+        //----- colonne 2-----------------
         ajouterBouton("\u2191n");
         ajouterBouton("8");
         ajouterBouton("5");
@@ -144,46 +144,44 @@ public class CommandeConteneur extends JPanel {
         ajouterBouton("Arg");
         ajouterBouton("ln");
         ajouterBouton("f(x)");
+    }
 
+    public static boolean isCommande() {
+        return commande;
+    }
+
+    public static void setCommande() {
+        commande = !commande;
     }
 
     private void ajouterBouton(String s) {
 
         if ((x % 10 == 0) && (y % 5 == 0)) {
             c.insets = new Insets(3, 6, 0, 0);
-
         }
         else if ((x % 10) == 9 && (y % 5 == 0)) {
             c.insets = new Insets(3, 3, 0, 6);
-
         }
         else if (x % 10 == 0 && y % 5 == 4) {
             c.insets = new Insets(3, 6, 10, 0);
-
         }
         else if (x % 10 == 0) {
             c.insets = new Insets(3, 6, 0, 0);
-
         }
         else if ((x % 10) != 0 && (y % 5 == 0)) {
             c.insets = new Insets(3, 3, 0, 0);
-
         }
         else if ((x % 10) == 9 && (y % 5 == 4)) {
             c.insets = new Insets(3, 3, 10, 6);
-
         }
         else if ((x % 10) == 9 && (y % 5 != 0)) {
             c.insets = new Insets(3, 3, 0, 6);
-
         }
         else if ((x % 10) != 0 && (y % 5 == 0)) {
             c.insets = new Insets(3, 3, 0, 0);
-
         }
         else if ((x % 10) != 0 && (y % 5 == 4)) {
             c.insets = new Insets(3, 3, 10, 0);
-
         }
         else {
             c.insets = new Insets(3, 3, 0, 0);
@@ -209,7 +207,7 @@ public class CommandeConteneur extends JPanel {
         //Font f = new Font("noto sans", Font.PLAIN, 12);
         //bouton.setFont(bouton.getFont().deriveFont(Font.BOLD));
         //bouton.setForeground(new Color(40, 40, 40));
-        bouton.setToolTipText("tooltettip");
+        bouton.setToolTipText(s);
         if (s.contains("=")) {
             bouton.setBackground(new Color(0, 0, 0));
         }
@@ -224,9 +222,7 @@ public class CommandeConteneur extends JPanel {
         bouton.addActionListener(e -> {
 
             ControleurAffiche.traite(s);
-
         });
-
     }
 
     private void ajouterBouton(int j) {
@@ -264,7 +260,6 @@ public class CommandeConteneur extends JPanel {
 
             //bouton.setBorder(new FromMesureBorder() );
         }
-
     }
 
     private JPanel ajouter(String... str) {
@@ -278,14 +273,5 @@ public class CommandeConteneur extends JPanel {
         }
 
         return jp;
-
-    }
-
-    public static boolean isCommande() {
-        return commande;
-    }
-
-    public static void setCommande() {
-        commande = !commande;
     }
 }
