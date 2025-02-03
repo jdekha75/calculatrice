@@ -1,2 +1,2 @@
 # calculatrice
-Calculatrice en Java Swing
+Calculatrice scientifique en Java Swing inspirée par la calculatrce ubuntu.
